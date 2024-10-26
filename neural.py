@@ -590,9 +590,9 @@ def create_model():
     return model
 
 
-                         
+path = 'temp_img.png'                        
 X, y, X_test, y_test = create_data_mnist('math_ds')
-image_data = cv2.imread('eq2.png', cv2.IMREAD_GRAYSCALE)
+image_data = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
 keys = np.array(range(X.shape[0]))
 np.random.shuffle(keys)
 X = X[keys]
@@ -626,7 +626,7 @@ seperator = Seperator(image_data)
 extracted = extract(image_data)
 sep_img = seperator.seperate()
 position = []
-org_img = cv2.imread('eq2.png', cv2.IMREAD_GRAYSCALE)
+org_img = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
 org_img_color = cv2.cvtColor(org_img, cv2.COLOR_GRAY2BGR) 
 
 for i, confidence in enumerate(extracted):
