@@ -608,8 +608,7 @@ def extract(image):
     seperated_images = seperator.seperate()
     id = []
     for img in seperated_images:
-        confidence= define(img)
-        id.append((confidence))
+        id.append(define(img))
     
     return id
         
