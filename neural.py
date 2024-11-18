@@ -590,9 +590,10 @@ def create_model():
     return model
 
 
-path = 'temp_img.png'                        
-X, y, X_test, y_test = create_data_mnist('math_ds')
+path = 'temp_img.png' 
 image_data = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
+'''                       
+X, y, X_test, y_test = create_data_mnist('math_ds')
 keys = np.array(range(X.shape[0]))
 np.random.shuffle(keys)
 X = X[keys]
@@ -600,7 +601,7 @@ y = y[keys]
 
 X = (X.reshape(X.shape[0], -1).astype(np.float32) - 127.5) / 127.5
 X_test = (X_test.reshape(X_test.shape[0], -1).astype(np.float32) -127.5) / 127.5
-    
+'''    
 model = load_model()
 
 def extract(image):
@@ -620,7 +621,7 @@ def define(image):
 
 
     
-lables = [label for label in os.listdir(os.path.join('C:\\Users\\3007k\\OneDrive\\Рабочий стол\\neuron\\math_ds\\train'))]
+#lables = [label for label in os.listdir(os.path.join('C:\\Users\\3007k\\OneDrive\\Рабочий стол\\neuron\\math_ds\\train'))]
 lable_chr = ['+', '/', '8', '5', '4', '*', '9', '1', '7', '6', '-', '3', '2', '0']
 seperator = Seperator(image_data)
 extracted = extract(image_data)
@@ -631,13 +632,13 @@ org_img_color = cv2.cvtColor(org_img, cv2.COLOR_GRAY2BGR)
 
 for i, confidence in enumerate(extracted):
     new_img = sep_img[i][60:-60, 60:-60]
-    print(f'{i} : {lables[np.argmax(confidence)]} {np.max(confidence*100)}')
+    print(f'{i} : {lable_chr[np.argmax(confidence)]} {np.max(confidence*100)}')
     
     result = cv2.matchTemplate(org_img, new_img, cv2.TM_CCOEFF_NORMED)
     loc = np.where(result >= 0.9)
     if loc[1].size > 0: 
         x, y = loc[1][0], loc[0][0] 
-        position.append((lables[np.argmax(confidence)], x))
+        position.append((lable_chr[np.argmax(confidence)], x))
         
         cv2.rectangle(
             org_img_color, 
@@ -654,7 +655,7 @@ position = sorted(position, key=lambda x: x[1])
 print(position)
 equation = ''
 for pos in position:
-    equation += lable_chr[lables.index(pos[0])]
+    equation += lable_chr[lable_chr.index(pos[0])]
 
 print(equation)
 print(eval(equation))
