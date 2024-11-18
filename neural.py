@@ -621,7 +621,7 @@ def define(image):
 
 
     
-#lables = [label for label in os.listdir(os.path.join('C:\\Users\\3007k\\OneDrive\\Рабочий стол\\neuron\\math_ds\\train'))]
+#lables = [label for label in os.listdir(os.path.join('shhhhhh'))]
 lable_chr = ['+', '/', '8', '5', '4', '*', '9', '1', '7', '6', '-', '3', '2', '0']
 seperator = Seperator(image_data)
 extracted = extract(image_data)
